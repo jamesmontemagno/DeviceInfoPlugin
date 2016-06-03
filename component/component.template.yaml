@@ -25,11 +25,11 @@ samples:
   - name: Device Info Samples (iOS, Android, and Windows)
     path: "../samples/DeviceInfoSample.sln"
     removeProjects: 
-      - Plugin.DeviceInfo
-      - Plugin.DeviceInfo.Abstractions
-      - Plugin.DeviceInfo.Android
-      - Plugin.DeviceInfo.iOSUnified
-      - Plugin.DeviceInfo.WinPhone
+      - DeviceInfo.Plugin
+      - DeviceInfo.Plugin.Abstractions
+      - DeviceInfo.Plugin.Android
+      - DeviceInfo.Plugin.iOSUnified
+      - DeviceInfo.Plugin.WinPhone
     installNuGets:
       - project: DeviceInfoSample
         packages: 
