@@ -1,0 +1,50 @@
+%YAML 1.2
+---
+version: {VERSION}
+name: Device Information Plugin
+id: DeviceInfoPlugin
+publisher: James Montemagno
+license: License.md
+skip_docs: true
+icons: 
+  - DeviceInfoPlugin_128x128.png
+  - DeviceInfoPlugin_512x512.png
+publisher-url: http://www.github.com/jamesmontemagno/DeviceInfoPlugin
+is_shell: true
+packages:
+  ios: Xam.Plugin.DeviceInfo, Version={VERSION}
+  ios-unified: Xam.Plugin.DeviceInfo, Version={VERSION}
+  android: Xam.Plugin.DeviceInfo, Version={VERSION}
+  winphone-8.0: Xam.Plugin.DeviceInfo, Version={VERSION}
+  winphone-8.1: Xam.Plugin.DeviceInfo, Version={VERSION}
+  winuniversal-10.0: Xam.Plugin.DeviceInfo, Version={VERSION}
+summary: Easily access device information features of any device.
+details: Details.md
+getting-started: GettingStarted.md
+samples: 
+  - name: Device Info Samples (iOS, Android, and Windows)
+    path: "../samples/DeviceInfoSample.sln"
+    removeProjects: 
+      - Plugin.DeviceInfo
+      - Plugin.DeviceInfo.Abstractions
+      - Plugin.DeviceInfo.Android
+      - Plugin.DeviceInfo.iOSUnified
+      - Plugin.DeviceInfo.WinPhone
+    installNuGets:
+      - project: DeviceInfoSample
+        packages: 
+          - Xam.Plugin.DeviceInfo
+      - project: DeviceInfoSample.iOS
+        packages: 
+          - Xam.Plugin.DeviceInfo
+      - project: DeviceInfoSample.Droid
+        packages: 
+          - Xam.Plugin.DeviceInfo
+      - project: DeviceInfoSample.WinPhone
+        packages: 
+          - Xam.Plugin.DeviceInfo
+    no_build: true
+    skip_docs: true  
+local-nuget-repo: ../Build/nuget
+no_build: true
+...
