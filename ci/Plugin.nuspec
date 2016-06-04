@@ -46,12 +46,12 @@
 
 
      <!--Win Phone 81-->
-     <file src="DeviceInfo\DeviceInfo.Plugin.WindowsPhone81\bin\Release\Plugin.DeviceInfo.dll" target="lib\wpa81\Plugin.DeviceInfo.dll" />
-     <file src="DeviceInfo\DeviceInfo.Plugin.WindowsPhone81\bin\Release\Plugin.DeviceInfo.xml" target="lib\wpa81\Plugin.DeviceInfo.xml" />
-     <file src="DeviceInfo\DeviceInfo.Plugin.WindowsPhone81\bin\Release\Plugin.DeviceInfo.pdb" target="lib\wpa81\Plugin.DeviceInfo.pdb" />
-     <file src="DeviceInfo\DeviceInfo.Plugin.Abstractions\bin\Release\Plugin.DeviceInfo.Abstractions.dll" target="lib\wpa81\Plugin.DeviceInfo.Abstractions.dll" />
-     <file src="DeviceInfo\DeviceInfo.Plugin.Abstractions\bin\Release\Plugin.DeviceInfo.Abstractions.xml" target="lib\wpa81\Plugin.DeviceInfo.Abstractions.xml" />
-     <file src="DeviceInfo\DeviceInfo.Plugin.Abstractions\bin\Release\Plugin.DeviceInfo.Abstractions.pdb" target="lib\wpa81\Plugin.DeviceInfo.Abstractions.pdb" />
+     <file src="src\DeviceInfo.Plugin.WindowsPhone81\bin\Release\Plugin.DeviceInfo.dll" target="lib\wpa81\Plugin.DeviceInfo.dll" />
+     <file src="src\DeviceInfo.Plugin.WindowsPhone81\bin\Release\Plugin.DeviceInfo.xml" target="lib\wpa81\Plugin.DeviceInfo.xml" />
+     <file src="src\DeviceInfo.Plugin.WindowsPhone81\bin\Release\Plugin.DeviceInfo.pdb" target="lib\wpa81\Plugin.DeviceInfo.pdb" />
+     <file src="src\DeviceInfo.Plugin.Abstractions\bin\Release\Plugin.DeviceInfo.Abstractions.dll" target="lib\wpa81\Plugin.DeviceInfo.Abstractions.dll" />
+     <file src="src\DeviceInfo.Plugin.Abstractions\bin\Release\Plugin.DeviceInfo.Abstractions.xml" target="lib\wpa81\Plugin.DeviceInfo.Abstractions.xml" />
+     <file src="src\DeviceInfo.Plugin.Abstractions\bin\Release\Plugin.DeviceInfo.Abstractions.pdb" target="lib\wpa81\Plugin.DeviceInfo.Abstractions.pdb" />
 
 
      <!--WinStore-->
