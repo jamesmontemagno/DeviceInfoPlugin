@@ -1,10 +1,12 @@
-## ![](Common/DeviceInfoPlugin/component/DeviceInfoPlugin_128x128.png) Device Info Plugin for Xamarin
+## Device Information Plugin for Xamarin and Windows
 
-Simple way of getting common device information.
+Simple way of getting common device information in Xamarin.iOS, Xamarin.Android, Windows, and Xamarin.Forms projects.
 
 ### Setup
 * Available on NuGet: http://www.nuget.org/packages/Xam.Plugin.DeviceInfo [![NuGet](https://img.shields.io/nuget/v/Xam.Plugin.DeviceInfo.svg?label=NuGet)](https://www.nuget.org/packages/Xam.Plugin.DeviceInfo/)
 * Install into your PCL project and Client projects.
+
+Build status: [![Build status](https://ci.appveyor.com/api/projects/status/9y9lk3jjnxjo3tsd?svg=true)](https://ci.appveyor.com/project/JamesMontemagno/deviceinfoplugin)
 
 **Platform Support**
 
@@ -95,49 +97,11 @@ public enum Platform
 }
 ```
 
-#### Contributors
-* [jamesmontemagno](https://github.com/jamesmontemagno)
 
-Thanks!
+#### Contributions
+Contributions are welcome! If you find a bug please report it and if you want a feature please report it.
+
+If you want to contribute code please file an issue and create a branch off of the current dev branch and file a pull request.
 
 #### License
-
-The MIT License (MIT)
-
-Copyright (c) 2016 JamesMontemagno/Refractored LLC
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-Dirived from: [@Cheesebaron](http://www.github.com/cheesebaron)
-
-//---------------------------------------------------------------------------------
-// Copyright 2013 Tomasz Cielecki (tomasz@ostebaronen.dk)
-// Licensed under the Apache License, Version 2.0 (the "License"); 
-// You may not use this file except in compliance with the License. 
-// You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
-
-// THIS CODE IS PROVIDED *AS IS* BASIS, WITHOUT WARRANTIES OR 
-// CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED, 
-// INCLUDING WITHOUT LIMITATION ANY IMPLIED WARRANTIES OR 
-// CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE, 
-// MERCHANTABLITY OR NON-INFRINGEMENT. 
-
-// See the Apache 2 License for the specific language governing 
-// permissions and limitations under the License.
-//---------------------------------------------------------------------------------
+Under MIT, see LICENSE file.
