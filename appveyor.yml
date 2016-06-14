@@ -7,9 +7,9 @@ assembly_info:
   assembly_informational_version: '{version}'
 build_script:
 - cmd: >-
-    powershell .\ci\install-android-sdk.ps1
+    powershell .\install-android-sdk.ps1
 
-    powershell .\ci\bootstrapper.ps1 -Target Default -Verbosity diagnostic
+    powershell .\bootstrapper.ps1 -Target Default -Verbosity diagnostic
 artifacts:
 - path: ./Build/nuget/*.nupkg
   name: NuGet

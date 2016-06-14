@@ -5,11 +5,11 @@ var TARGET = Argument ("target", Argument ("t", "Default"));
 var version = EnvironmentVariable ("APPVEYOR_BUILD_VERSION") ?? Argument("version", "0.0.9999");
 
 var libraries = new Dictionary<string, string> {
- 	{ "./../src/DeviceInfo.sln", "Any" },
+ 	{ "./src/DeviceInfo.sln", "Any" },
 };
 
 var samples = new Dictionary<string, string> {
-	{ "./../samples/DeviceInfoSample.sln", "Win" },
+	{ "./samples/DeviceInfoSample.sln", "Win" },
 };
 
 var BuildAction = new Action<Dictionary<string, string>> (solutions =>
@@ -71,14 +71,14 @@ Task ("NuGet")
 	.IsDependentOn ("Samples")
 	.Does (() =>
 {
-    if(!DirectoryExists("./../Build/nuget/"))
-        CreateDirectory("./../Build/nuget");
+    if(!DirectoryExists("./Build/nuget/"))
+        CreateDirectory("./Build/nuget");
         
-	NuGetPack ("./Plugin.nuspec", new NuGetPackSettings { 
+	NuGetPack ("./nuget/Plugin.nuspec", new NuGetPackSettings { 
 		Version = version,
 		Verbosity = NuGetVerbosity.Detailed,
-		OutputDirectory = "./../Build/nuget/",
-		BasePath = "./../",
+		OutputDirectory = "./Build/nuget/",
+		BasePath = "./",
 	});	
 });
 
@@ -88,18 +88,18 @@ Task("Component")
     .Does(()=>
 {
     // Clear out xml files from build (they interfere with the component packaging)
-	DeleteFiles ("./../Build/**/*.xml");
+	DeleteFiles ("./Build/**/*.xml");
 
 	// Generate component.yaml files from templates
-	CopyFile ("./../component/component.template.yaml", "./../component/component.yaml");
+	CopyFile ("./component/component.template.yaml", "./component/component.yaml");
 
 	// Replace version in template files
-	ReplaceTextInFiles ("./../**/component.yaml", "{VERSION}", version);
+	ReplaceTextInFiles ("./**/component.yaml", "{VERSION}", version);
 
 	var xamCompSettings = new XamarinComponentSettings { ToolPath = "./tools/xamarin-component.exe" };
 
 	// Package both components
-	PackageComponent ("./../component/", xamCompSettings);
+	PackageComponent ("./component/", xamCompSettings);
 });
 
 //Build the component, which build samples, nugets, and libraries
@@ -108,12 +108,12 @@ Task ("Default").IsDependentOn("Component");
 
 Task ("Clean").Does (() => 
 {
-	CleanDirectory ("./../Component/tools/");
+	CleanDirectory ("./component/tools/");
 
-	CleanDirectories ("./../Build/");
+	CleanDirectories ("./Build/");
 
-	CleanDirectories ("./../**/bin");
-	CleanDirectories ("./../**/obj");
+	CleanDirectories ("./**/bin");
+	CleanDirectories ("./**/obj");
 });
 
 

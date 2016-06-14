@@ -22,11 +22,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{67E3E554-8449-4AE5-B36E-60BA1881BB82}"
 	ProjectSection(SolutionItems) = preProject
 		..\appveyor.yml = ..\appveyor.yml
-		..\ci\build.cake = ..\ci\build.cake
+		..\build.cake = ..build.cake
 		..\component\component.template.yaml = ..\component\component.template.yaml
-		..\ci\Plugin.nuspec = ..\ci\Plugin.nuspec
+		..\nuget\Plugin.nuspec = ..\nuget\Plugin.nuspec
 		..\README.md = ..\README.md
-		..\ci\readme.txt = ..\ci\readme.txt
+		..\nuget\readme.txt = ..\nuget\readme.txt
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceInfo.Plugin.UWP", "DeviceInfo.Plugin.UWP\DeviceInfo.Plugin.UWP.csproj", "{329549EB-C0DA-451D-B661-2ADED69082D2}"
