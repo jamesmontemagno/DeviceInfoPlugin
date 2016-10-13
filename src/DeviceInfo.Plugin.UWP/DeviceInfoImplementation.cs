@@ -3,6 +3,8 @@ using System;
 using Windows.System.Profile;
 using Windows.Security.ExchangeActiveSyncProvisioning;
 using Windows.Foundation.Metadata;
+using Windows.ApplicationModel.Resources.Core;
+using Windows.UI.ViewManagement;
 
 namespace Plugin.DeviceInfo
 {
@@ -67,7 +69,20 @@ namespace Plugin.DeviceInfo
         {
             get
             {
-                return AnalyticsInfo.VersionInfo.DeviceFamilyVersion;
+                var sv = AnalyticsInfo.VersionInfo.DeviceFamilyVersion;
+                try
+                {
+                    
+                    var v = ulong.Parse(sv);
+                    var v1 = (v & 0xFFFF000000000000L) >> 48;
+                    var v2 = (v & 0x0000FFFF00000000L) >> 32;
+                    var v3 = (v & 0x00000000FFFF0000L) >> 16;
+                    var v4 = v & 0x000000000000FFFFL;
+                    return  $"{v1}.{v2}.{v3}.{v4}";
+                }
+                catch { }
+
+                return sv;
             }
         }
         /// <inheritdoc/>
@@ -75,13 +90,27 @@ namespace Plugin.DeviceInfo
         {
             get
             {
-                if (AnalyticsInfo.VersionInfo.DeviceFamily == "Windows.Desktop")
-                    return Abstractions.Platform.Windows;
-                else
-                    return Abstractions.Platform.WindowsPhone;
+
+
+                switch (AnalyticsInfo.VersionInfo.DeviceFamily)
+                {
+                    case "Windows.Mobile":
+                        return Abstractions.Platform.WindowsPhone;
+                    case "Windows.Desktop":
+                        return UIViewSettings.GetForCurrentView().UserInteractionMode == UserInteractionMode.Mouse
+                            ? Abstractions.Platform.Windows
+                            : Abstractions.Platform.WindowsTablet;
+                    case "Windows.IoT":
+                        return Abstractions.Platform.IoT;
+                    case "Windows.Xbox":
+                        return Abstractions.Platform.Xbox;
+                    case "Windows.Team":
+                        return Abstractions.Platform.SurfaceHub;
+                    default:
+                        return Abstractions.Platform.Windows;
+                }
             }
         }
-
         /// <inheritdoc/>
         public Version VersionNumber
         {
@@ -94,6 +123,25 @@ namespace Plugin.DeviceInfo
                 catch
                 {
                     return new Version(10, 0);
+                }
+            }
+        }
+
+        public Idiom Idiom
+        {
+            get
+            {
+               switch(Platform)
+                {
+                    case Abstractions.Platform.Windows:
+                        return Idiom.Desktop;
+                    case Abstractions.Platform.WindowsPhone:
+                        return Idiom.Phone;
+                    case Abstractions.Platform.WindowsTablet:
+                        return Idiom.Tablet;
+                    default:
+                        return Idiom.Unknown;
+
                 }
             }
         }

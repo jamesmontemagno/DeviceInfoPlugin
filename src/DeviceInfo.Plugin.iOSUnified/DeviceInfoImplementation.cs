@@ -18,14 +18,14 @@
 // permissions and limitations under the License.
 //---------------------------------------------------------------------------------
 using Plugin.DeviceInfo.Abstractions;
+using UIKit;
 using System;
-using Android.OS;
-using Plugin.CurrentActivity;
+
 
 namespace Plugin.DeviceInfo
 {
     /// <summary>
-    /// Implementation for Feature
+    /// Implementation for DeviceInfo
     /// </summary>
     public class DeviceInfoImplementation : IDeviceInfo
     {
@@ -50,23 +50,27 @@ namespace Plugin.DeviceInfo
         /// <inheritdoc/>
         public string Id
         {
-            get { return Build.Serial; }
+            get
+            {
+                // iOS 6 and up
+                return UIDevice.CurrentDevice.IdentifierForVendor.AsString();
+            }
         }
         /// <inheritdoc/>
         public string Model
         {
-            get { return Build.Model; }
+            get { return UIDevice.CurrentDevice.Model; }
         }
         /// <inheritdoc/>
         public string Version
         {
-            get { return Build.VERSION.Release; }
+            get { return UIDevice.CurrentDevice.SystemVersion; }
         }
 
         /// <inheritdoc/>
         public Platform Platform
         {
-            get { return Platform.Android; }
+            get { return Platform.iOS; }
         }
 
         /// <inheritdoc/>
@@ -85,19 +89,23 @@ namespace Plugin.DeviceInfo
             }
         }
 
-        const int TabletCrossover = 600;
-
         public Idiom Idiom
         {
             get
             {
-                var context = CrossCurrentActivity.Current.Activity ?? Android.App.Application.Context;
-                if (context == null)
-                    return Idiom.Unknown;
-
-                int minWidthDp = CrossCurrentActivity.Current.Activity.Resources.Configuration.SmallestScreenWidthDp;
-
-                return  minWidthDp >= TabletCrossover ? Idiom.Tablet : Idiom.Phone;
+                switch(UIDevice.CurrentDevice.UserInterfaceIdiom)
+                {
+                    case UIUserInterfaceIdiom.Pad:
+                        return Idiom.Tablet;
+                    case UIUserInterfaceIdiom.Phone:
+                        return Idiom.Phone;
+                    case UIUserInterfaceIdiom.TV:
+                        return Idiom.TV;
+                    case UIUserInterfaceIdiom.CarPlay:
+                        return Idiom.Car;
+                    default:
+                        return Idiom.Unknown;
+                }
             }
         }
     }

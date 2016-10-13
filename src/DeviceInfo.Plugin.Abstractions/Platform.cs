@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Plugin.DeviceInfo.Abstractions
+﻿namespace Plugin.DeviceInfo.Abstractions
 {
-  
-  public enum Platform
-  {
-    Android,
-    iOS,
-    WindowsPhone,
-    Windows
-  }
-  
+
+    public enum Platform
+    {
+        Android,
+        iOS,
+        WindowsPhone,
+        Windows,
+        WindowsTablet,
+        SurfaceHub,
+        Xbox,
+        IoT,
+        Unknown
+    }
+
 }

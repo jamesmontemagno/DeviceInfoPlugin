@@ -38,6 +38,7 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Idiom.cs" />
     <Compile Include="Platform.cs" />
     <Compile Include="IDeviceInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

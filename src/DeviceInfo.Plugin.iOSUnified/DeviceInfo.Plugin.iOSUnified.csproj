@@ -35,12 +35,10 @@
     <DocumentationFile>bin\iPhone\Release\Plugin.DeviceInfo.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\DeviceInfo.Plugin.iOS\DeviceInfoImplementation.cs">
-      <Link>DeviceInfoImplementation.cs</Link>
-    </Compile>
     <Compile Include="..\DeviceInfo.Plugin\CrossDeviceInfo.cs">
       <Link>CrossDeviceInfo.cs</Link>
     </Compile>
+    <Compile Include="DeviceInfoImplementation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

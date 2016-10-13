@@ -2,7 +2,7 @@
  * Ported with permission from: Thomasz Cielecki @Cheesebaron
  * AppId: https://github.com/Cheesebaron/Cheesebaron.MvxPlugins
  */
- //---------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------
 // Copyright 2013 Tomasz Cielecki (tomasz@ostebaronen.dk)
 // Licensed under the Apache License, Version 2.0 (the "License"); 
 // You may not use this file except in compliance with the License. 
@@ -31,90 +31,104 @@ using Windows.Security.ExchangeActiveSyncProvisioning;
 
 namespace Plugin.DeviceInfo
 {
-  /// <summary>
-  /// Implementation for DeviceInfo
-  /// </summary>
-  public class DeviceInfoImplementation : IDeviceInfo
-  {
-
-    EasClientDeviceInformation deviceInfo;
-    public DeviceInfoImplementation()
+    /// <summary>
+    /// Implementation for DeviceInfo
+    /// </summary>
+    public class DeviceInfoImplementation : IDeviceInfo
     {
-      deviceInfo = new EasClientDeviceInformation();
-    }
-    /// <inheritdoc/>
-    public string GenerateAppId(bool usingPhoneId = false, string prefix = null, string suffix = null)
-    {
-      var appId = "";
 
-      if (!string.IsNullOrEmpty(prefix))
-        appId += prefix;
-
-      appId += Guid.NewGuid().ToString();
-
-      if (usingPhoneId)
-        appId += Id;
-
-      if (!string.IsNullOrEmpty(suffix))
-        appId += suffix;
-
-      return appId;
-    }
-    /// <inheritdoc/>
-    public string Id
-    {
-      get
-      {
-        var token = HardwareIdentification.GetPackageSpecificToken(null);
-        var hardwareId = token.Id;
-        var dataReader = Windows.Storage.Streams.DataReader.FromBuffer(hardwareId);
-
-        var bytes = new byte[hardwareId.Length];
-        dataReader.ReadBytes(bytes);
-
-        return Convert.ToBase64String(bytes);
-      }
-    }
-    /// <inheritdoc/>
-    public string Model
-    {
-      get { return deviceInfo.SystemProductName; }
-    }
-    /// <inheritdoc/>
-    public string Version
-    {
-      get 
-      {
-        return "8.1";//Fix in future, not real great way to get this info in 8.1 
-      }
-    }
-    /// <inheritdoc/>
-    public Platform Platform
-    {
-      get 
-      {
-#if WINDOWS_APP
-        return Platform.Windows;
-#else
-        return Platform.WindowsPhone; 
-#endif
-      }
-    }
-
-    /// <inheritdoc/>
-    public Version VersionNumber
-    {
-        get
+        EasClientDeviceInformation deviceInfo;
+        public DeviceInfoImplementation()
         {
-            try
+            deviceInfo = new EasClientDeviceInformation();
+        }
+        /// <inheritdoc/>
+        public string GenerateAppId(bool usingPhoneId = false, string prefix = null, string suffix = null)
+        {
+            var appId = "";
+
+            if (!string.IsNullOrEmpty(prefix))
+                appId += prefix;
+
+            appId += Guid.NewGuid().ToString();
+
+            if (usingPhoneId)
+                appId += Id;
+
+            if (!string.IsNullOrEmpty(suffix))
+                appId += suffix;
+
+            return appId;
+        }
+        /// <inheritdoc/>
+        public string Id
+        {
+            get
             {
-                return new Version(Version);
-            }
-            catch
-            {
-                return new Version(8, 1);
+                var token = HardwareIdentification.GetPackageSpecificToken(null);
+                var hardwareId = token.Id;
+                var dataReader = Windows.Storage.Streams.DataReader.FromBuffer(hardwareId);
+
+                var bytes = new byte[hardwareId.Length];
+                dataReader.ReadBytes(bytes);
+
+                return Convert.ToBase64String(bytes);
             }
         }
+        /// <inheritdoc/>
+        public string Model
+        {
+            get { return deviceInfo.SystemProductName; }
+        }
+        /// <inheritdoc/>
+        public string Version
+        {
+            get
+            {
+                return "8.1";//Fix in future, not real great way to get this info in 8.1 
+            }
+        }
+        /// <inheritdoc/>
+        public Platform Platform
+        {
+            get
+            {
+#if WINDOWS_APP
+                return Platform.Windows;
+#else
+                return Platform.WindowsPhone;
+#endif
+            }
+        }
+
+        /// <inheritdoc/>
+        public Version VersionNumber
+        {
+            get
+            {
+                try
+                {
+                    return new Version(Version);
+                }
+                catch
+                {
+                    return new Version(8, 1);
+                }
+            }
+        }
+
+#if WINDOWS_APP
+        /// <summary>
+        /// Gets Idiom of Device
+        /// </summary>
+        public Idiom Idiom => Idiom.Tablet;
+   
+#else
+        /// <summary>
+        /// Gets Idiom of Device
+        /// </summary>
+        public Idiom Idiom => Idiom.Phone;
+
+#endif
     }
-  }
 }
