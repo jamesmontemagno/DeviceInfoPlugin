@@ -21,6 +21,7 @@ using Plugin.DeviceInfo.Abstractions;
 using System;
 using Android.OS;
 using Plugin.CurrentActivity;
+using static Android.Provider.Settings;
 
 namespace Plugin.DeviceInfo
 {
@@ -47,27 +48,41 @@ namespace Plugin.DeviceInfo
 
             return appId;
         }
+
+        string id = string.Empty;
         /// <inheritdoc/>
         public string Id
         {
-            get { return Build.Serial; }
+            get
+            {
+                if (!string.IsNullOrWhiteSpace(id))
+                    return id;
+
+                id = Build.Serial;
+                if(id == Build.Unknown)
+                {
+                    try
+                    {
+                        var context = CrossCurrentActivity.Current.Activity ?? Android.App.Application.Context;
+                        id = Secure.GetString(context.ContentResolver, Secure.AndroidId);
+                    }
+                    catch(Exception ex)
+                    {
+                        Android.Util.Log.Warn("DeviceInfo", "Unable to get id: " + ex.ToString());
+                    }
+                }
+
+                return id;
+            }
         }
         /// <inheritdoc/>
-        public string Model
-        {
-            get { return Build.Model; }
-        }
-        /// <inheritdoc/>
-        public string Version
-        {
-            get { return Build.VERSION.Release; }
-        }
+        public string Model => Build.Model;
 
         /// <inheritdoc/>
-        public Platform Platform
-        {
-            get { return Platform.Android; }
-        }
+        public string Version => Build.VERSION.Release; 
+
+        /// <inheritdoc/>
+        public Platform Platform => Platform.Android; 
 
         /// <inheritdoc/>
         public Version VersionNumber
