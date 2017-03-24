@@ -42,6 +42,24 @@ namespace Plugin.DeviceInfo
         {
             get
             {
+                if (ApiInformation.IsTypePresent("Windows.System.Profile.SystemIdentification"))
+                {
+                    var systemId = SystemIdentification.GetSystemIdForPublisher();
+
+                    // Make sure this device can generate the IDs
+                    if (systemId.Source != SystemIdentificationSource.None)
+                    {
+                        // The Id property has a buffer with the unique ID
+                        var hardwareId = systemId.Id;
+                        var dataReader = Windows.Storage.Streams.DataReader.FromBuffer(hardwareId);
+
+                        var bytes = new byte[hardwareId.Length];
+                        dataReader.ReadBytes(bytes);
+
+                        return Convert.ToBase64String(bytes);
+                    }
+                }
+
                 if (ApiInformation.IsTypePresent("Windows.System.Profile.HardwareIdentification"))
                 {
                     var token = HardwareIdentification.GetPackageSpecificToken(null);
