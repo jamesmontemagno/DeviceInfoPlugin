@@ -37,44 +37,58 @@ namespace Plugin.DeviceInfo
 
             return appId;
         }
+        string id = null;
         /// <inheritdoc/>
         public string Id
         {
             get
             {
-                if (ApiInformation.IsTypePresent("Windows.System.Profile.SystemIdentification"))
-                {
-                    var systemId = SystemIdentification.GetSystemIdForPublisher();
 
-                    // Make sure this device can generate the IDs
-                    if (systemId.Source != SystemIdentificationSource.None)
+                if (id != null)
+                    return id;
+
+                try
+                {
+                    if (ApiInformation.IsTypePresent("Windows.System.Profile.SystemIdentification"))
                     {
-                        // The Id property has a buffer with the unique ID
-                        var hardwareId = systemId.Id;
+                        var systemId = SystemIdentification.GetSystemIdForPublisher();
+
+                        // Make sure this device can generate the IDs
+                        if (systemId.Source != SystemIdentificationSource.None)
+                        {
+                            // The Id property has a buffer with the unique ID
+                            var hardwareId = systemId.Id;
+                            var dataReader = Windows.Storage.Streams.DataReader.FromBuffer(hardwareId);
+
+                            var bytes = new byte[hardwareId.Length];
+                            dataReader.ReadBytes(bytes);
+
+                            id = Convert.ToBase64String(bytes);
+                        }
+                    }
+                    else if (ApiInformation.IsTypePresent("Windows.System.Profile.HardwareIdentification"))
+                    {
+                        var token = HardwareIdentification.GetPackageSpecificToken(null);
+                        var hardwareId = token.Id;
                         var dataReader = Windows.Storage.Streams.DataReader.FromBuffer(hardwareId);
 
                         var bytes = new byte[hardwareId.Length];
                         dataReader.ReadBytes(bytes);
 
-                        return Convert.ToBase64String(bytes);
+                        id = Convert.ToBase64String(bytes);
                     }
-                }
+                    else
+                    {
+                        id = "unsupported";
+                    }
 
-                if (ApiInformation.IsTypePresent("Windows.System.Profile.HardwareIdentification"))
+                }
+                catch (Exception)
                 {
-                    var token = HardwareIdentification.GetPackageSpecificToken(null);
-                    var hardwareId = token.Id;
-                    var dataReader = Windows.Storage.Streams.DataReader.FromBuffer(hardwareId);
 
-                    var bytes = new byte[hardwareId.Length];
-                    dataReader.ReadBytes(bytes);
+                }
 
-                    return Convert.ToBase64String(bytes);
-                }
-                else
-                {
-                    return "unsupported";
-                }
+                return id;
             }
         }
         /// <inheritdoc/>
@@ -90,13 +104,13 @@ namespace Plugin.DeviceInfo
                 var sv = AnalyticsInfo.VersionInfo.DeviceFamilyVersion;
                 try
                 {
-                    
+
                     var v = ulong.Parse(sv);
                     var v1 = (v & 0xFFFF000000000000L) >> 48;
                     var v2 = (v & 0x0000FFFF00000000L) >> 32;
                     var v3 = (v & 0x00000000FFFF0000L) >> 16;
                     var v4 = v & 0x000000000000FFFFL;
-                    return  $"{v1}.{v2}.{v3}.{v4}";
+                    return $"{v1}.{v2}.{v3}.{v4}";
                 }
                 catch { }
 
@@ -149,7 +163,7 @@ namespace Plugin.DeviceInfo
         {
             get
             {
-               switch(Platform)
+                switch (Platform)
                 {
                     case Abstractions.Platform.Windows:
                         return Idiom.Desktop;

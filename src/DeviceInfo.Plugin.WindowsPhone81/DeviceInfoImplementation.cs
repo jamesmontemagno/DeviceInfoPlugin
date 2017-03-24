@@ -60,19 +60,33 @@ namespace Plugin.DeviceInfo
 
             return appId;
         }
+        string id = null;
         /// <inheritdoc/>
         public string Id
         {
             get
             {
-                var token = HardwareIdentification.GetPackageSpecificToken(null);
-                var hardwareId = token.Id;
-                var dataReader = Windows.Storage.Streams.DataReader.FromBuffer(hardwareId);
+                 if(id != null)
+                    return id;
+                    
+                 try
+                 {
+                     var token = HardwareIdentification.GetPackageSpecificToken(null);
+                    var hardwareId = token.Id;
+                    var dataReader = Windows.Storage.Streams.DataReader.FromBuffer(hardwareId);
 
-                var bytes = new byte[hardwareId.Length];
-                dataReader.ReadBytes(bytes);
+                    var bytes = new byte[hardwareId.Length];
+                    dataReader.ReadBytes(bytes);
 
-                return Convert.ToBase64String(bytes);
+                    id = Convert.ToBase64String(bytes);
+                 }
+                 catch (System.Exception)
+                 {
+                     
+                 }
+
+                 return id;
+                
             }
         }
         /// <inheritdoc/>
