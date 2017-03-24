@@ -11,7 +11,10 @@
         SurfaceHub,
         Xbox,
         IoT,
-        Unknown
+        Unknown,
+        tvOS,
+        watchOS,
+        macOS
     }
 
 }

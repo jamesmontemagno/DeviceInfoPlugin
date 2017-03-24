@@ -18,7 +18,16 @@
 // permissions and limitations under the License.
 //---------------------------------------------------------------------------------
 using Plugin.DeviceInfo.Abstractions;
+
+
+#if __MACOS__
+using AppKit;
+using Foundation;
+#elif __WATCHOS__
+using WatchKit;
+#else
 using UIKit;
+#endif
 using System;
 
 
@@ -29,6 +38,16 @@ namespace Plugin.DeviceInfo
     /// </summary>
     public class DeviceInfoImplementation : IDeviceInfo
     {
+#if __MACOS__
+        NSProcessInfo info;
+#endif
+        public DeviceInfoImplementation()
+        {
+
+#if __MACOS__
+            info = new NSProcessInfo();
+#endif
+        }
         /// <inheritdoc/>
         public string GenerateAppId(bool usingPhoneId = false, string prefix = null, string suffix = null)
         {
@@ -47,31 +66,31 @@ namespace Plugin.DeviceInfo
 
             return appId;
         }
-        /// <inheritdoc/>
-        public string Id
-        {
-            get
-            {
-                // iOS 6 and up
-                return UIDevice.CurrentDevice.IdentifierForVendor.AsString();
-            }
-        }
-        /// <inheritdoc/>
-        public string Model
-        {
-            get { return UIDevice.CurrentDevice.Model; }
-        }
-        /// <inheritdoc/>
-        public string Version
-        {
-            get { return UIDevice.CurrentDevice.SystemVersion; }
-        }
 
-        /// <inheritdoc/>
-        public Platform Platform
-        {
-            get { return Platform.iOS; }
-        }
+#if __MACOS__
+        public string Id => string.Empty;
+#elif __WATCHOS__
+        public string Id => string.Empty;
+#else
+        public string Id => UIDevice.CurrentDevice.IdentifierForVendor.AsString();
+#endif
+
+#if __MACOS__
+        public string Model => string.Empty;
+#elif __WATCHOS__
+        public string Model => WKInterfaceDevice.CurrentDevice.Model;
+#else
+        public string Model => UIDevice.CurrentDevice.Model;
+#endif
+
+#if __MACOS__
+        public string Version => info.OperatingSystemVersionString;
+#elif __WATCHOS__
+        public string Version => WKInterfaceDevice.CurrentDevice.SystemVersion;
+#else
+        public string Version => UIDevice.CurrentDevice.SystemVersion;
+#endif
+
 
         /// <inheritdoc/>
         public Version VersionNumber
@@ -89,11 +108,32 @@ namespace Plugin.DeviceInfo
             }
         }
 
+
+#if __IOS__
+        public Platform Platform => Platform.iOS;
+#elif __MACOS__
+        public Platform Platform => Platform.macOS;
+#elif __WATCHOS__
+        public Platform Platform => Platform.watchOS;
+#elif __TVOS__
+        public Platform Platform => Platform.tvOS;
+#endif
+
+
+
         public Idiom Idiom
         {
             get
             {
-                switch(UIDevice.CurrentDevice.UserInterfaceIdiom)
+#if __MACOS__
+                return Idiom.Desktop;
+#elif __WATCHOS__
+                return Idiom.Watch;
+#elif __TVOS__
+                return Idiom.TV;
+#else 
+
+                switch (UIDevice.CurrentDevice.UserInterfaceIdiom)
                 {
                     case UIUserInterfaceIdiom.Pad:
                         return Idiom.Tablet;
@@ -106,7 +146,9 @@ namespace Plugin.DeviceInfo
                     default:
                         return Idiom.Unknown;
                 }
+        #endif
             }
+
         }
     }
 }
