@@ -18,37 +18,51 @@
        <summary>Get device information such as Model, OS, and other properties.</summary>
        <tags>xamarin, pcl, xam.pcl, settings, windows phone, winphone, wp8, winrt, android, xamarin.forms, ios</tags>
      <dependencies>
+       <group targetFramework="net">
+       </group>
+       <group targetFramework="win">
+       </group>
+       <group targetFramework="wp">
+       </group>
+       <group targetFramework="wpa">
+       </group>
+       <group targetFramework="netstandard1.0">
+         <dependency id="NETStandard.Library" version="1.6.1" />
+       </group>
        <group targetFramework="MonoAndroid10">
          <dependency id="Plugin.CurrentActivity" version="1.0.1"/>
+       </group>
+       <group targetFramework="Xamarin.iOS10">
+       </group>
+       <group targetFramework="Xamarin.Mac20">
+       </group>
+       <group targetFramework="portable-net45+win+wpa81+wp80">
+       </group>
+       <group targetFramework="uap">
+       </group>
+       <group targetFramework="dotnet">
+       </group>
+       <group targetFramework="xamarintvos">
+       </group>
+       <group targetFramework="xamarinwatchos">
        </group>
      </dependencies>
    </metadata>
    <files>
    <file src="nuget\readme.txt" target="readme.txt" />
 <!--Core-->
-     <file src="src\DeviceInfo.Plugin\bin\Release\Plugin.DeviceInfo.*" target="lib\portable-net45+wp80+win8+wpa81" />
+     <file src="src\DeviceInfo.Plugin\bin\Release\netstandard1.0\Plugin.DeviceInfo.*" target="lib\netstandard1.0" />
 
-
-     <!--Win Phone Silverlight-->
-     <file src="src\DeviceInfo.Plugin.WindowsPhone8\bin\Release\Plugin.DeviceInfo.*" target="lib\wp8" />
-
-
-     <!--Win Phone 81-->
-     <file src="src\DeviceInfo.Plugin.WindowsPhone81\bin\Release\Plugin.DeviceInfo.*" target="lib\wpa81" />
-
-
-     <!--WinStore-->
-     <file src="src\DeviceInfo.Plugin.WindowsStore\bin\Release\Plugin.DeviceInfo.*" target="lib\win8" />
 
 
      <!--Xamarin.Android-->
      <file src="src\DeviceInfo.Plugin.Android\bin\Release\Plugin.DeviceInfo.*" target="lib\MonoAndroid10" />
 
  
-     <!--Xamarin.iOS Unified-->
-     <file src="src\DeviceInfo.Plugin.iOSUnified\bin\iPhone\Release\Plugin.DeviceInfo.*" target="lib\Xamarin.iOS10" />
+     <!--Xamarin.iOS-->
+     <file src="src\DeviceInfo.Plugin.iOS\bin\iPhone\Release\Plugin.DeviceInfo.*" target="lib\Xamarin.iOS10" />
 
-<!--watchos-->
+		<!--watchos-->
      <file src="src\DeviceInfo.Plugin.watchOS\bin\Release\Plugin.DeviceInfo.*" target="lib\XamarinWatchOS" />
 
 

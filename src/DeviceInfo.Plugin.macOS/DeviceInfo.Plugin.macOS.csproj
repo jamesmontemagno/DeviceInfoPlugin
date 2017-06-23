@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -29,7 +29,8 @@
     <HttpClientHandler>HttpClientHandler</HttpClientHandler>
     <TlsProvider>Default</TlsProvider>
     <LinkMode>None</LinkMode>
-    <XamMacArch></XamMacArch>
+    <XamMacArch>
+    </XamMacArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -48,7 +49,8 @@
     <HttpClientHandler>HttpClientHandler</HttpClientHandler>
     <TlsProvider>Default</TlsProvider>
     <LinkMode>None</LinkMode>
-    <XamMacArch></XamMacArch>
+    <XamMacArch>
+    </XamMacArch>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -60,13 +62,13 @@
     <Compile Include="..\DeviceInfo.Plugin\CrossDeviceInfo.cs">
       <Link>CrossDeviceInfo.cs</Link>
     </Compile>
-    <Compile Include="..\DeviceInfo.Plugin.iOSUnified\DeviceInfoImplementation.cs">
+    <Compile Include="..\DeviceInfo.Plugin.iOS\DeviceInfoImplementation.cs">
       <Link>DeviceInfoImplementation.cs</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DeviceInfo.Plugin.Abstractions\DeviceInfo.Plugin.Abstractions.csproj">
-      <Project>{6EDB0588-FFC5-4EF5-8A99-9E241D0F878D}</Project>
+      <Project>{9d600088-4991-4f11-9ea1-95c05172d00e}</Project>
       <Name>DeviceInfo.Plugin.Abstractions</Name>
     </ProjectReference>
   </ItemGroup>
