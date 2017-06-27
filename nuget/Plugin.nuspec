@@ -49,7 +49,7 @@
      </dependencies>
    </metadata>
    <files>
-   <file src="nuget\readme.txt" target="readme.txt" />
+
 <!--Core-->
      <file src="src\DeviceInfo.Plugin\bin\Release\netstandard1.0\Plugin.DeviceInfo.*" target="lib\netstandard1.0" />
 
