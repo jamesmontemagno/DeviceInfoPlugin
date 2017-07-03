@@ -114,13 +114,9 @@
     </Compile>
     <Compile Include="DeviceInfoImplementation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="Properties\Plugin.DeviceInfo.rd.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DeviceInfo.Plugin.Abstractions\DeviceInfo.Plugin.Abstractions.csproj">
-      <Project>{6edb0588-ffc5-4ef5-8a99-9e241d0f878d}</Project>
-      <Name>DeviceInfo.Plugin.Abstractions</Name>
-    </ProjectReference>
+    <EmbeddedResource Include="Properties\Plugin.DeviceInfo.rd.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <SDKReference Include="WindowsDesktop, Version=10.0.14393.0">
@@ -129,6 +125,12 @@
     <SDKReference Include="WindowsMobile, Version=10.0.14393.0">
       <Name>Windows Mobile Extensions for the UWP</Name>
     </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DeviceInfo.Plugin.Abstractions\DeviceInfo.Plugin.Abstractions.csproj">
+      <Project>{9d600088-4991-4f11-9ea1-95c05172d00e}</Project>
+      <Name>DeviceInfo.Plugin.Abstractions</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

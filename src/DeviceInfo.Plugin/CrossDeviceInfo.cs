@@ -3,41 +3,45 @@ using System;
 
 namespace Plugin.DeviceInfo
 {
-  /// <summary>
-  /// Cross platform DeviceInfo implemenations
-  /// </summary>
-  public class CrossDeviceInfo
-  {
-    static Lazy<IDeviceInfo> Implementation = new Lazy<IDeviceInfo>(() => CreateDeviceInfo(), System.Threading.LazyThreadSafetyMode.PublicationOnly);
+	/// <summary>
+	/// Cross platform DeviceInfo implemenations
+	/// </summary>
+	public class CrossDeviceInfo
+	{
+		static Lazy<IDeviceInfo> implementation = new Lazy<IDeviceInfo>(() => CreateDeviceInfo(), System.Threading.LazyThreadSafetyMode.PublicationOnly);
 
-    /// <summary>
-    /// Current settings to use
-    /// </summary>
-    public static IDeviceInfo Current
-    {
-      get
-      {
-        var ret = Implementation.Value;
-        if (ret == null)
-        {
-          throw NotImplementedInReferenceAssembly();
-        }
-        return ret;
-      }
-    }
+		/// <summary>
+		/// Gets if the plugin is supported on the current platform.
+		/// </summary>
+		public static bool IsSupported => implementation.Value == null ? false : true;
 
-    static IDeviceInfo CreateDeviceInfo()
-    {
-#if PORTABLE
-        return null;
+		/// <summary>
+		/// Current plugin implementation to use
+		/// </summary>
+		public static IDeviceInfo Current
+		{
+			get
+			{
+				var ret = implementation.Value;
+				if (ret == null)
+				{
+					throw NotImplementedInReferenceAssembly();
+				}
+				return ret;
+			}
+		}
+
+		static IDeviceInfo CreateDeviceInfo()
+		{
+#if NETSTANDARD1_0
+			return null;
 #else
-        return new DeviceInfoImplementation();
+			return new DeviceInfoImplementation();
 #endif
-    }
+		}
 
-    internal static Exception NotImplementedInReferenceAssembly()
-    {
-      return new NotImplementedException("This functionality is not implemented in the portable version of this assembly.  You should reference the NuGet package from your main application project in order to reference the platform-specific implementation.");
-    }
-  }
+		internal static Exception NotImplementedInReferenceAssembly() =>
+			new NotImplementedException("This functionality is not implemented in the portable version of this assembly.  You should reference the NuGet package from your main application project in order to reference the platform-specific implementation.");
+		
+	}
 }

@@ -17,7 +17,8 @@
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
     <DevInstrumentationEnabled>True</DevInstrumentationEnabled>
     <TargetFrameworkVersion>v4.0.3</TargetFrameworkVersion>
-    <AndroidTlsProvider></AndroidTlsProvider>
+    <AndroidTlsProvider>
+    </AndroidTlsProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -64,7 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DeviceInfo.Plugin.Abstractions\DeviceInfo.Plugin.Abstractions.csproj">
-      <Project>{6edb0588-ffc5-4ef5-8a99-9e241d0f878d}</Project>
+      <Project>{9d600088-4991-4f11-9ea1-95c05172d00e}</Project>
       <Name>DeviceInfo.Plugin.Abstractions</Name>
     </ProjectReference>
   </ItemGroup>
