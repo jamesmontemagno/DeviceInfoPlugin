@@ -10,7 +10,7 @@ Build status: [![Build status](https://ci.appveyor.com/api/projects/status/9y9lk
 
 **Platform Support**
 
-|Platform|Supported|Version|
+|Platform|Version|
 | ------------------- | :------------------: |
 |Xamarin.iOS|iOS 7+|
 |Xamarin.Android|API 10+|
@@ -48,11 +48,6 @@ string GenerateAppId(bool usingPhoneId = false, string prefix = null, string suf
 /// </summary>
 string Id { get; }
 ```
-Important:
-
-Windows Phone:
-Permissions to add:
-ID_CAP_IDENTITY_DEVICE
 
 **Device Model**
 ```csharp
