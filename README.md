@@ -4,7 +4,7 @@ Simple way of getting common device information in Xamarin.iOS, Xamarin.Android,
 
 ### Setup
 * Available on NuGet: http://www.nuget.org/packages/Xam.Plugin.DeviceInfo [![NuGet](https://img.shields.io/nuget/v/Xam.Plugin.DeviceInfo.svg?label=NuGet)](https://www.nuget.org/packages/Xam.Plugin.DeviceInfo/)
-* Install into your PCL project and Client projects.
+* Install into your PCL/netstandard project and Client projects.
 
 Build status: [![Build status](https://ci.appveyor.com/api/projects/status/9y9lk3jjnxjo3tsd?svg=true)](https://ci.appveyor.com/project/JamesMontemagno/deviceinfoplugin)
 
@@ -31,7 +31,7 @@ Used to generate a unique Id for your app.
 ```csharp
 /// <summary>
 /// Generates a an AppId optionally using the PhoneId a prefix and a suffix and a Guid to ensure uniqueness
-/// 
+///
 /// The AppId format is as follows {prefix}guid{phoneid}{suffix}, where parts in {} are optional.
 /// </summary>
 /// <param name="usingPhoneId">Setting this to true adds the device specific id to the AppId (remember to give the app the correct permissions)</param>
@@ -57,11 +57,10 @@ string Id { get; }
 string Model { get; }
 ```
 
-
 **Version**
 ```csharp
 /// <summary>
-/// Get the version of the Operating System
+/// Gets the version of the operating system as a string
 /// </summary>
 string Version { get; }
 ```
@@ -70,7 +69,15 @@ Returns the specific version number of the OS such as:
 * iOS: 8.1
 * Android: 4.4.4
 * Windows Phone: 8.10.14219.0
-* WinRT: always 8.1 until there is a work around
+* UWP: 10.0.14393.105
+
+**VersionNumber**
+```csharp
+/// <summary>
+/// Gets the version number of the operating system as a Version
+/// </summary>
+Version VersionNumber { get; }
+```
 
 **Platform**
 ```csharp
@@ -80,14 +87,44 @@ Returns the specific version number of the OS such as:
 Platform Platform { get; }
 ```
 
-Returns the Platform Enum of:
+Returns the Platform enum of:
 ```csharp
 public enum Platform
 {
-  Android,
-  iOS,
-  WindowsPhone,
-  Windows
+    Android,
+    iOS,
+    WindowsPhone,
+    Windows,
+    WindowsTablet,
+    SurfaceHub,
+    Xbox,
+    IoT,
+    Unknown,
+    tvOS,
+    watchOS,
+    macOS
+}
+```
+
+**Idiom**
+```csharp
+/// <summary>
+/// Get the idom of the device
+/// </summary>
+Idiom Idiom { get; }
+```
+
+Returns the Idiom enum of:
+```csharp
+public enum Idiom
+{
+    Unknown,
+    Car,
+    Desktop,
+    Phone,
+    Tablet,
+    TV,
+    Watch
 }
 ```
 
