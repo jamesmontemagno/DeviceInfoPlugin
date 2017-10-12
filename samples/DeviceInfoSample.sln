@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.14
+VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceInfoSample", "DeviceInfoSample\DeviceInfoSample\DeviceInfoSample.csproj", "{AE497F96-A745-4705-82EA-F639B9E4E966}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceInfoSample.iOS", "DeviceInfoSample\DeviceInfoSample.iOS\DeviceInfoSample.iOS.csproj", "{429F38CF-85A0-4C8E-AA55-660C351BFA97}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceInfoSample.Droid", "DeviceInfoSample\DeviceInfoSample.Droid\DeviceInfoSample.Droid.csproj", "{DD5B29B6-3BE6-472C-AF75-895FB37319A1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{FEFEFBF9-95F0-4953-9E94-BA7CB55C730E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -148,5 +150,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E8C1C306-02F3-484C-861C-2917A2EED60F}
 	EndGlobalSection
 EndGlobal

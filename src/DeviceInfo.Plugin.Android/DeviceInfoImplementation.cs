@@ -22,6 +22,8 @@ using System;
 using Android.OS;
 using Plugin.CurrentActivity;
 using static Android.Provider.Settings;
+using Java.Interop;
+using Android.Runtime;
 
 namespace Plugin.DeviceInfo
 {
@@ -48,8 +50,25 @@ namespace Plugin.DeviceInfo
 
             return appId;
         }
+		
+		static JniPeerMembers buildMembers = new XAPeerMembers("android/os/Build", typeof(Build));
 
-        string id = string.Empty;
+		static string GetSerialField()
+		{
+			try
+			{
+				const string id = "SERIAL.Ljava/lang/String;";
+				var value = buildMembers.StaticFields.GetObjectValue(id);
+				return JNIEnv.GetString(value.Handle, JniHandleOwnership.TransferLocalRef);
+			}
+			catch
+			{
+				return string.Empty;
+
+			}
+		}
+
+		string id = string.Empty;
         /// <inheritdoc/>
         public string Id
         {
@@ -58,8 +77,9 @@ namespace Plugin.DeviceInfo
                 if (!string.IsNullOrWhiteSpace(id))
                     return id;
 
-                id = Build.Serial;
-                if(id == Build.Unknown)
+
+                id = GetSerialField();
+                if(string.IsNullOrWhiteSpace(id) || id == Build.Unknown)
                 {
                     try
                     {
