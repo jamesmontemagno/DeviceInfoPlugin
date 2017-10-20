@@ -79,7 +79,7 @@ namespace Plugin.DeviceInfo
 
 
                 id = GetSerialField();
-                if(string.IsNullOrWhiteSpace(id) || id == Build.Unknown)
+                if(string.IsNullOrWhiteSpace(id) || id == Build.Unknown || id == "0")
                 {
                     try
                     {
