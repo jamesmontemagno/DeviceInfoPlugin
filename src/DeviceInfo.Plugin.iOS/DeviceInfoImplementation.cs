@@ -29,8 +29,12 @@ using ObjCRuntime;
 using System.Diagnostics;
 #elif __WATCHOS__
 using WatchKit;
+using ObjCRuntime;
+using Platform = Plugin.DeviceInfo.Abstractions.Platform;
 #else
 using UIKit;
+using ObjCRuntime;
+using Platform = Plugin.DeviceInfo.Abstractions.Platform;
 #endif
 using System;
 
@@ -237,5 +241,14 @@ namespace Plugin.DeviceInfo
             }
 
         }
+
+        /// <summary>
+        /// Checks whether this is a real device or an emulator/simulator
+        /// </summary>
+#if __MACOS__
+        public bool IsDevice => true; // There is no simulator for mac OS
+#else
+        public bool IsDevice => Runtime.Arch == Arch.DEVICE;
+#endif
     }
 }

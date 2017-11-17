@@ -68,5 +68,10 @@ namespace Plugin.DeviceInfo.Abstractions
         /// Get the idom of the device
         /// </summary>
         Idiom Idiom { get; }
+
+        /// <summary>
+        /// Checks whether this is a real device or an emulator/simulator
+        /// </summary>
+        bool IsDevice { get; }
     }
 }

@@ -135,5 +135,21 @@ namespace Plugin.DeviceInfo
                 return  minWidthDp >= TabletCrossover ? Idiom.Tablet : Idiom.Phone;
             }
         }
+
+        /// <summary>
+        /// Checks whether this is a real device or an emulator/simulator
+        /// 
+        /// Shamelessly taken from https://stackoverflow.com/a/13635166
+        /// </summary>
+        public bool IsDevice => !(
+            Build.Fingerprint.StartsWith("generic", StringComparison.InvariantCulture)
+            || Build.Fingerprint.StartsWith("unknown", StringComparison.InvariantCulture)
+            || Build.Model.Contains("google_sdk")
+            || Build.Model.Contains("Emulator")
+            || Build.Model.Contains("Android SDK built for x86")
+            || Build.Manufacturer.Contains("Genymotion")
+            || (Build.Brand.StartsWith("generic", StringComparison.InvariantCulture) && Build.Device.StartsWith("generic", StringComparison.InvariantCulture))
+            || Build.Product.Equals("google_sdk", StringComparison.InvariantCulture)
+        );
     }
 }
