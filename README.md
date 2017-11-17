@@ -128,6 +128,16 @@ public enum Idiom
 }
 ```
 
+**IsDevice**
+```csharp
+/// <summary>
+/// Checks whether this is a real device or an emulator/simulator
+/// </summary>
+bool IsDevice { get; }
+```
+
+Returns `true`, if the app is running on a real physical device. `false` is returned if the app is running on an emulator or simulator (whatever applies for the platform).
+
 
 #### Contributions
 Contributions are welcome! If you find a bug please report it and if you want a feature please report it.
