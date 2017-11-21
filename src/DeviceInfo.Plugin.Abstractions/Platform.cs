@@ -14,7 +14,8 @@
         Unknown,
         tvOS,
         watchOS,
-        macOS
+        macOS,
+        Tizen
     }
 
 }

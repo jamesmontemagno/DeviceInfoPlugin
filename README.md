@@ -19,6 +19,7 @@ Build status: [![Build status](https://ci.appveyor.com/api/projects/status/9y9lk
 |Xamarin.Mac|All|
 |watchOS|All|
 |tvOS|All|
+|Tizen|4.0+|
 
 
 ### API Usage
@@ -70,6 +71,7 @@ Returns the specific version number of the OS such as:
 * Android: 4.4.4
 * Windows Phone: 8.10.14219.0
 * UWP: 10.0.14393.105
+* Tizen: 4.0
 
 **VersionNumber**
 ```csharp
@@ -102,7 +104,8 @@ public enum Platform
     Unknown,
     tvOS,
     watchOS,
-    macOS
+    macOS,
+    Tizen
 }
 ```
 

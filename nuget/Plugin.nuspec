@@ -46,6 +46,8 @@
        </group>
        <group targetFramework="xamarinwatchos">
        </group>
+       <group targetFramework="tizen40">
+       </group>
      </dependencies>
    </metadata>
    <files>
@@ -77,6 +79,8 @@
        <file src="src\DeviceInfo.Plugin.UWP\bin\Release\Plugin.DeviceInfo.*" target="lib\UAP10" />
 
 
+     <!--Tizen-->
+     <file src="src\DeviceInfo.Plugin.Tizen\bin\Release\tizen40\Plugin.DeviceInfo.*" target="lib\tizen40" />
 
 
    </files>
