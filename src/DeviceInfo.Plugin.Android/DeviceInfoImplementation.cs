@@ -24,6 +24,9 @@ using Plugin.CurrentActivity;
 using static Android.Provider.Settings;
 using Java.Interop;
 using Android.Runtime;
+using Android.Content.Res;
+using Android.App;
+using Android.Content;
 
 namespace Plugin.DeviceInfo
 {
@@ -122,17 +125,65 @@ namespace Plugin.DeviceInfo
 
         const int TabletCrossover = 600;
 
+
         public Idiom Idiom
         {
             get
             {
-                var context = CrossCurrentActivity.Current.Activity ?? Android.App.Application.Context;
-                if (context == null)
-                    return Idiom.Unknown;
+                try
+                {
+                    var context = CrossCurrentActivity.Current.Activity ?? Application.Context;
+                    if (context == null)
+                        return Idiom.Unknown;
 
-                int minWidthDp = CrossCurrentActivity.Current.Activity.Resources.Configuration.SmallestScreenWidthDp;
 
-                return  minWidthDp >= TabletCrossover ? Idiom.Tablet : Idiom.Phone;
+                    //easiest way to get ui mode
+                    var uiModeManager = context.GetSystemService(Context.UiModeService) as UiModeManager;
+
+                    try
+                    {
+                        switch (uiModeManager?.CurrentModeType ?? UiMode.TypeUndefined)
+                        {
+                            case UiMode.TypeTelevision: return Idiom.TV;
+                            case UiMode.TypeCar: return Idiom.Car;
+                        }
+                    }
+                    finally
+                    {
+                        uiModeManager?.Dispose();
+                    }
+
+
+                    var config = context.Resources.Configuration;
+
+                    if (config == null)
+                        return Idiom.Unknown;
+
+
+                    var mode = config.UiMode;
+                    if ((int)Build.VERSION.SdkInt >= 20)
+                    {
+                        if (mode.HasFlag(UiMode.TypeWatch))
+                            return Idiom.Watch;
+                    }
+
+                    if (mode.HasFlag(UiMode.TypeTelevision))
+                        return Idiom.TV;
+                    if (mode.HasFlag(UiMode.TypeCar))
+                        return Idiom.Car;
+                    if (mode.HasFlag(UiMode.TypeDesk))
+                        return Idiom.Desktop;
+
+                    int minWidthDp = config.SmallestScreenWidthDp;
+
+                    return minWidthDp >= TabletCrossover ? Idiom.Tablet : Idiom.Phone;
+                }
+                catch(Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine($"Unable to get idiom: {ex}");
+                }
+
+                return Idiom.Unknown;
             }
         }
 
