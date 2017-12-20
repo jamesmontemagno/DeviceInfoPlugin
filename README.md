@@ -81,6 +81,14 @@ Returns the specific version number of the OS such as:
 Version VersionNumber { get; }
 ```
 
+**AppVersionNumber**
+```csharp
+/// <summary>
+/// Gets the version number of the current app
+/// </summary>
+Version AppVersionNumber { get; }
+```
+
 **Platform**
 ```csharp
 /// <summary>
