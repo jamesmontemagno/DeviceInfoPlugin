@@ -58,6 +58,10 @@ namespace Plugin.DeviceInfo.Abstractions
         /// </summary>
         Version VersionNumber { get; }
 
+		/// <summary>
+		/// Gets the version number of the currently running app
+		/// </summary>
+		Version AppVersionNumber { get; }
 
         /// <summary>
         /// Get the platform of the device
