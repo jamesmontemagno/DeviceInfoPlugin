@@ -123,6 +123,21 @@ namespace Plugin.DeviceInfo
             }
         }
 
+		public Version AppVersionNumber
+		{
+			get
+			{
+				try
+				{
+					return new Version(Application.Context.PackageManager.GetPackageInfo(Application.Context.PackageName, 0).VersionName);
+				}
+				catch
+				{
+					return new Version();
+				}
+			}
+		}
+
         const int TabletCrossover = 600;
 
 
@@ -202,5 +217,5 @@ namespace Plugin.DeviceInfo
             || (Build.Brand.StartsWith("generic", StringComparison.InvariantCulture) && Build.Device.StartsWith("generic", StringComparison.InvariantCulture))
             || Build.Product.Equals("google_sdk", StringComparison.InvariantCulture)
         );
-    }
+	}
 }

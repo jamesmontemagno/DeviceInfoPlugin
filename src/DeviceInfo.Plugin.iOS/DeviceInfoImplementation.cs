@@ -195,6 +195,22 @@ namespace Plugin.DeviceInfo
             }
         }
 
+		public Version AppVersionNumber
+		{
+			get
+			{
+				try
+				{
+					return new Version(Foundation.NSBundle.MainBundle.
+						InfoDictionary["CFBundleShortVersionString"].ToString());
+				}
+				catch
+				{
+					return new Version();
+				}
+			}
+		}
+
         /// <summary>
         /// Returns platform of device
         /// </summary>

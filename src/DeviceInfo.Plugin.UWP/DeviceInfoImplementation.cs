@@ -5,6 +5,7 @@ using Windows.Security.ExchangeActiveSyncProvisioning;
 using Windows.Foundation.Metadata;
 using Windows.ApplicationModel.Resources.Core;
 using Windows.UI.ViewManagement;
+using Windows.ApplicationModel;
 
 namespace Plugin.DeviceInfo
 {
@@ -159,7 +160,26 @@ namespace Plugin.DeviceInfo
             }
         }
 
-        public Idiom Idiom
+		public Version AppVersionNumber
+		{
+			get
+			{
+				try
+				{
+					Package package = Package.Current;
+					PackageId packageId = package.Id;
+					PackageVersion version = packageId.Version;
+
+					return new Version(version.Major, version.Minor, version.Build, version.Revision);
+				}
+				catch
+				{
+					return new Version("0.0");
+				}
+			}
+		}
+
+		public Idiom Idiom
         {
             get
             {

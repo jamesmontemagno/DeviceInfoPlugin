@@ -72,6 +72,23 @@ namespace Plugin.DeviceInfo
 			}
 		}
 
+		public Version AppVersionNumber
+		{
+			get
+			{
+				try
+				{
+					var packageId = Tizen.Applications.Application.Current.ApplicationInfo.PackageId;
+					var versionString = Tizen.Applications.PackageManager.GetPackage(packageId).Version;
+					return new Version(versionString);
+				}
+				catch
+				{
+					return new Version();
+				}
+			}
+		}
+
 		/// <summary>
 		/// Returns platform of device
 		/// </summary>
