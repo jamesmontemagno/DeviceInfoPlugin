@@ -81,12 +81,22 @@ Returns the specific version number of the OS such as:
 Version VersionNumber { get; }
 ```
 
-**AppVersionNumber**
+**AppVersion**
 ```csharp
 /// <summary>
-/// Gets the version number of the current app
+/// Returns the current version of the app, as defined in the PList, e.g. "4.3".
 /// </summary>
-Version AppVersionNumber { get; }
+/// <value>The current version.</value>
+string AppVersion { get; }
+```
+
+**AppBuild**
+```csharp
+/// <summary>
+/// Returns the current build of the app, as defined in the PList, e.g. "4300".
+/// </summary>
+/// <value>The current build.</value>
+string AppBuild { get; }
 ```
 
 **Platform**

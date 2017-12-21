@@ -160,24 +160,26 @@ namespace Plugin.DeviceInfo
             }
         }
 
-		public Version AppVersionNumber
+		/// <summary>
+		/// Returns the current version of the app, as defined in the PList, e.g. "4.3".
+		/// </summary>
+		/// <value>The current version.</value>
+		public string AppVersion
 		{
 			get
 			{
-				try
-				{
-					Package package = Package.Current;
-					PackageId packageId = package.Id;
-					PackageVersion version = packageId.Version;
+				var version = Package.Current.Id.Version;
 
-					return new Version(version.Major, version.Minor, version.Build, version.Revision);
-				}
-				catch
-				{
-					return new Version("0.0");
-				}
+				return string.Format("{0}.{1}.{2}.{3}", version.Major, version.Minor, version.Build, version.Revision);
 			}
 		}
+
+
+		/// <summary>
+		/// Returns the current build of the app, as defined in the PList, e.g. "4300".
+		/// </summary>
+		/// <value>The current build.</value>
+		public string AppBuild => Package.Current.Id.Version.Build.ToString();
 
 		public Idiom Idiom
         {

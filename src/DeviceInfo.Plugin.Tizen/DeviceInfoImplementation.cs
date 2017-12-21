@@ -72,19 +72,29 @@ namespace Plugin.DeviceInfo
 			}
 		}
 
-		public Version AppVersionNumber
+
+		/// <summary>
+		/// Returns the current build of the app, as defined in the PList, e.g. "4300".
+		/// </summary>
+		/// <value>The current build.</value>
+		public string AppBuild => string.Empty;
+
+		/// <summary>
+		/// Returns the current version of the app, as defined in the PList, e.g. "4.3".
+		/// </summary>
+		/// <value>The current version.</value>
+		public string AppVersion
 		{
 			get
 			{
 				try
 				{
 					var packageId = Tizen.Applications.Application.Current.ApplicationInfo.PackageId;
-					var versionString = Tizen.Applications.PackageManager.GetPackage(packageId).Version;
-					return new Version(versionString);
+					return Tizen.Applications.PackageManager.GetPackage(packageId).Version;
 				}
 				catch
 				{
-					return new Version();
+					return string.Empty;
 				}
 			}
 		}

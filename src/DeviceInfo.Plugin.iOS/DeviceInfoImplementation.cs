@@ -18,6 +18,7 @@
 // permissions and limitations under the License.
 //---------------------------------------------------------------------------------
 using Plugin.DeviceInfo.Abstractions;
+using Foundation;
 
 
 
@@ -195,27 +196,24 @@ namespace Plugin.DeviceInfo
             }
         }
 
-		public Version AppVersionNumber
-		{
-			get
-			{
-				try
-				{
-					return new Version(Foundation.NSBundle.MainBundle.
-						InfoDictionary["CFBundleShortVersionString"].ToString());
-				}
-				catch
-				{
-					return new Version();
-				}
-			}
-		}
+		/// <summary>
+		/// Returns the current version of the app, as defined in the PList, e.g. "4.3".
+		/// </summary>
+		/// <value>The current version.</value>
+		public string AppVersion => NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleShortVersionString").ToString();
 
-        /// <summary>
-        /// Returns platform of device
-        /// </summary>
+
+		/// <summary>
+		/// Returns the current build of the app, as defined in the PList, e.g. "4300".
+		/// </summary>
+		/// <value>The current build.</value>
+		public string AppBuild => NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleVersion").ToString();
+
+		/// <summary>
+		/// Returns platform of device
+		/// </summary>
 #if __IOS__
-        public Platform Platform => Platform.iOS;
+		public Platform Platform => Platform.iOS;
 #elif __MACOS__
         public Abstractions.Platform Platform => Abstractions.Platform.macOS;
 #elif __WATCHOS__

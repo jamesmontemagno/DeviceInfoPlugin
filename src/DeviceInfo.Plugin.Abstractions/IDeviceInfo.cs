@@ -59,14 +59,22 @@ namespace Plugin.DeviceInfo.Abstractions
         Version VersionNumber { get; }
 
 		/// <summary>
-		/// Gets the version number of the currently running app
+		/// Returns the current version of the app, as defined in the PList, e.g. "4.3".
 		/// </summary>
-		Version AppVersionNumber { get; }
+		/// <value>The current version.</value>
+		string AppVersion { get; }
 
-        /// <summary>
-        /// Get the platform of the device
-        /// </summary>
-        Platform Platform { get; }
+
+		/// <summary>
+		/// Returns the current build of the app, as defined in the PList, e.g. "4300".
+		/// </summary>
+		/// <value>The current build.</value>
+		string AppBuild { get; }
+
+		/// <summary>
+		/// Get the platform of the device
+		/// </summary>
+		Platform Platform { get; }
 
         /// <summary>
         /// Get the idom of the device

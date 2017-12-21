@@ -27,6 +27,7 @@ using Android.Runtime;
 using Android.Content.Res;
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 
 namespace Plugin.DeviceInfo
 {
@@ -123,22 +124,35 @@ namespace Plugin.DeviceInfo
             }
         }
 
-		public Version AppVersionNumber
+		/// <summary>
+		/// Returns the current version of the app, as defined in the metadata, e.g. "4.3".
+		/// </summary>
+		/// <value>The current version.</value>
+		public string AppVersion
 		{
 			get
 			{
-				try
-				{
-					return new Version(Application.Context.PackageManager.GetPackageInfo(Application.Context.PackageName, 0).VersionName);
-				}
-				catch
-				{
-					return new Version();
-				}
+				using (var info = Application.Context.PackageManager.GetPackageInfo(Application.Context.PackageName, PackageInfoFlags.MetaData))
+					return info.VersionName;
 			}
 		}
 
-        const int TabletCrossover = 600;
+
+		/// <summary>
+		/// Returns the current build of the app, as defined in the metadata, e.g. "4300".
+		/// </summary>
+		/// <value>The current build.</value>
+		public string AppBuild
+		{
+			get
+			{
+				using (var info = Application.Context.PackageManager.GetPackageInfo(Application.Context.PackageName, PackageInfoFlags.MetaData))
+					return info.VersionCode.ToString();
+			}
+		}
+
+
+		const int TabletCrossover = 600;
 
 
         public Idiom Idiom
