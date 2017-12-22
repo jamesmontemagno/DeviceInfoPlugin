@@ -65,7 +65,7 @@ namespace Plugin.DeviceInfo
 #elif __WATCHOS__
 				return WKInterfaceDevice.CurrentDevice.Name;
 #elif __MACOS__
-				return "";
+				return Environment.MachineName;
 #endif
 			}
 		}
