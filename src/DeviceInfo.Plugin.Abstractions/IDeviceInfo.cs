@@ -48,10 +48,20 @@ namespace Plugin.DeviceInfo.Abstractions
         /// </summary>
         string Model { get; }
 
-        /// <summary>
-        /// Gets the version of the operating system as a string
-        /// </summary>
-        string Version { get; }
+		/// <summary>
+		/// Get the name of the device
+		/// </summary>
+		string Manufacturer { get; }
+
+		/// <summary>
+		/// Get the name of the device
+		/// </summary>
+		string DeviceName { get; }
+
+		/// <summary>
+		/// Gets the version of the operating system as a string
+		/// </summary>
+		string Version { get; }
 
         /// <summary>
         /// Gets the version number of the operating system as a <see cref="Version"/>

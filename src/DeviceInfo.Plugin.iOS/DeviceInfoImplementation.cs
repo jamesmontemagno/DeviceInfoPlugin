@@ -47,14 +47,37 @@ namespace Plugin.DeviceInfo
     /// </summary>
     public class DeviceInfoImplementation : IDeviceInfo
     {
+
+		/// <summary>
+		/// Get the name of the device
+		/// </summary>
+		public string Manufacturer => "Apple";
+
+		/// <summary>
+		/// Get the name of the device
+		/// </summary>
+		public string DeviceName
+		{
+			get
+			{
+#if __IOS__ || __TVOS__
+				return UIKit.UIDevice.CurrentDevice.Name;
+#elif __WATCHOS__
+				return WKInterfaceDevice.CurrentDevice.Name;
+#elif __MACOS__
+				return "";
+#endif
+			}
+		}
+
 #if __MACOS__
         NSProcessInfo info;
         string id, model = null;
 #endif
-        /// <summary>
-        /// Default Constructor
-        /// </summary>
-        public DeviceInfoImplementation()
+		/// <summary>
+		/// Default Constructor
+		/// </summary>
+		public DeviceInfoImplementation()
         {
 
 #if __MACOS__
@@ -236,7 +259,7 @@ namespace Plugin.DeviceInfo
                 return Idiom.Watch;
 #elif __TVOS__
                 return Idiom.TV;
-#else 
+#else
 
                 switch (UIDevice.CurrentDevice.UserInterfaceIdiom)
                 {
@@ -251,7 +274,7 @@ namespace Plugin.DeviceInfo
                     default:
                         return Idiom.Unknown;
                 }
-        #endif
+#endif
             }
 
         }

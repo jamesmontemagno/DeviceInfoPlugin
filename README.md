@@ -58,6 +58,25 @@ string Id { get; }
 string Model { get; }
 ```
 
+
+**Manufacturer**
+```csharp
+/// <summary>
+/// Get the name of the device
+/// </summary>
+string Manufacturer { get; }
+```
+
+
+**DeviceName**
+```csharp
+/// <summary>
+/// Get the name of the device
+/// </summary>
+string DeviceName { get; }
+```
+
+
 **Version**
 ```csharp
 /// <summary>

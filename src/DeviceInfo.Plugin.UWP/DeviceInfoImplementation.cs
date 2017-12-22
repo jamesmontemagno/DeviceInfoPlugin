@@ -14,8 +14,17 @@ namespace Plugin.DeviceInfo
     /// </summary>
     public class DeviceInfoImplementation : IDeviceInfo
     {
+		/// <summary>
+		/// Get the name of the device
+		/// </summary>
+		public string Manufacturer => deviceInfo.SystemManufacturer;
 
-        EasClientDeviceInformation deviceInfo;
+		/// <summary>
+		/// Get the name of the device
+		/// </summary>
+		public string DeviceName => deviceInfo.FriendlyName;
+
+		EasClientDeviceInformation deviceInfo;
         public DeviceInfoImplementation()
         {
             deviceInfo = new EasClientDeviceInformation();
@@ -92,13 +101,11 @@ namespace Plugin.DeviceInfo
                 return id;
             }
         }
-        /// <inheritdoc/>
-        public string Model
-        {
-            get { return deviceInfo.SystemProductName; }
-        }
-        /// <inheritdoc/>
-        public string Version
+		/// <inheritdoc/>
+		public string Model => deviceInfo.SystemProductName;
+
+		/// <inheritdoc/>
+		public string Version
         {
             get
             {

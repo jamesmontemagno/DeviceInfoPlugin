@@ -36,8 +36,29 @@ namespace Plugin.DeviceInfo
     /// </summary>
     public class DeviceInfoImplementation : IDeviceInfo
     {
-        /// <inheritdoc/>
-        public string GenerateAppId(bool usingPhoneId = false, string prefix = null, string suffix = null)
+
+		/// <summary>
+		/// Get the name of the device
+		/// </summary>
+		public string Manufacturer => Android.OS.Build.Manufacturer;
+
+		/// <summary>
+		/// Get the name of the device
+		/// </summary>
+		public string DeviceName
+		{
+			get
+			{
+				var name = Android.Provider.Settings.System.GetString(Application.Context.ContentResolver, "device_name");
+				if (string.IsNullOrWhiteSpace(name))
+					name = Model;
+
+				return name;
+			}
+		}
+
+		/// <inheritdoc/>
+		public string GenerateAppId(bool usingPhoneId = false, string prefix = null, string suffix = null)
         {
             var appId = "";
 
