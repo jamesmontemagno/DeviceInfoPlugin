@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\..\..\src\DeviceInfo.Plugin\CrossDeviceInfo.cs">
+      <Link>CrossDeviceInfo.cs</Link>
+    </Compile>
     <Compile Include="App.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
