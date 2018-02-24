@@ -1,5 +1,6 @@
 using Plugin.DeviceInfo.Abstractions;
 using System;
+using System.Globalization;
 using Windows.System.Profile;
 using Windows.Security.ExchangeActiveSyncProvisioning;
 using Windows.Foundation.Metadata;
@@ -213,5 +214,8 @@ namespace Plugin.DeviceInfo
 		/// Source: http://igrali.com/2014/07/17/get-device-information-windows-phone-8-1-winrt/
         /// </summary>
 		public bool IsDevice => deviceInfo.SystemProductName == "Virtual";
+
+        /// <inheritdoc/>
+        public string Language => CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
     }
 }

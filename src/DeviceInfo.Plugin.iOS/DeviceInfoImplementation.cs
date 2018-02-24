@@ -295,5 +295,8 @@ namespace Plugin.DeviceInfo
 #else
         public bool IsDevice => Runtime.Arch == Arch.DEVICE;
 #endif
+
+        /// <inheritdoc/>
+        public string Language => NSLocale.PreferredLanguages[0].Substring(0, 2);
 	}
 }
