@@ -252,5 +252,8 @@ namespace Plugin.DeviceInfo
             || (Build.Brand.StartsWith("generic", StringComparison.InvariantCulture) && Build.Device.StartsWith("generic", StringComparison.InvariantCulture))
             || Build.Product.Equals("google_sdk", StringComparison.InvariantCulture)
         );
+
+        /// <inheritdoc/>
+        public string Language => Application.Context.Resources.Configuration.Locale.Language;
 	}
 }

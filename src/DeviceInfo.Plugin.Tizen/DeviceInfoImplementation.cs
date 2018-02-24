@@ -180,5 +180,8 @@ namespace Plugin.DeviceInfo
 					return false;
 			}
 		}
+
+		/// <inheritdoc/>
+		public string Language => string.Empty;
 	}
 }

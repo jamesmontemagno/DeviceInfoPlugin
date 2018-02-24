@@ -95,5 +95,10 @@ namespace Plugin.DeviceInfo.Abstractions
         /// Checks whether this is a real device or an emulator/simulator
         /// </summary>
         bool IsDevice { get; }
+
+        /// <summary>
+        /// Returns the current device language, as a two character string, e.g. "en", "fr", "nl"...
+        /// </summary>
+        string Language { get; }
     }
 }
