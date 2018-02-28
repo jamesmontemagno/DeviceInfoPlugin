@@ -19,6 +19,7 @@
 //---------------------------------------------------------------------------------
 using Plugin.DeviceInfo.Abstractions;
 using Foundation;
+using CoreTelephony;
 
 
 
@@ -294,6 +295,20 @@ namespace Plugin.DeviceInfo
 		public bool IsDevice => true; // There is no simulator for mac OS
 #else
         public bool IsDevice => Runtime.Arch == Arch.DEVICE;
+
 #endif
-	}
+        public string NetworkCarrier
+        {
+            get 
+            {
+#if __IOS__
+                using (var info = new CTTelephonyNetworkInfo()) { 
+                    return info.SubscriberCellularProvider.CarrierName; 
+                }
+#else
+				return "";
+#endif
+            }
+        }
+    }
 }

@@ -180,5 +180,7 @@ namespace Plugin.DeviceInfo
 					return false;
 			}
 		}
+
+        public string NetworkCarrier => "";
 	}
 }

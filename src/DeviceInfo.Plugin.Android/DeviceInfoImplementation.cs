@@ -28,6 +28,7 @@ using Android.Content.Res;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
+using Android.Telephony;
 
 namespace Plugin.DeviceInfo
 {
@@ -252,5 +253,18 @@ namespace Plugin.DeviceInfo
             || (Build.Brand.StartsWith("generic", StringComparison.InvariantCulture) && Build.Device.StartsWith("generic", StringComparison.InvariantCulture))
             || Build.Product.Equals("google_sdk", StringComparison.InvariantCulture)
         );
-	}
+
+        public string NetworkCarrier
+        {
+            get {
+                var context = CrossCurrentActivity.Current.Activity ?? Application.Context;
+
+                if (context == null)
+                    return "";
+                
+                TelephonyManager manager = (TelephonyManager)context.GetSystemService(Context.TelephonyService);
+                return manager.NetworkOperatorName;
+            }
+        }
+    }
 }

@@ -213,5 +213,7 @@ namespace Plugin.DeviceInfo
 		/// Source: http://igrali.com/2014/07/17/get-device-information-windows-phone-8-1-winrt/
         /// </summary>
 		public bool IsDevice => deviceInfo.SystemProductName == "Virtual";
+
+        public string NetworkCarrier => "";
     }
 }
