@@ -95,5 +95,11 @@ namespace Plugin.DeviceInfo.Abstractions
         /// Checks whether this is a real device or an emulator/simulator
         /// </summary>
         bool IsDevice { get; }
+
+        /// <summary>
+        /// Get the Network Carrier of the device
+        /// Returns empty string when no carrier available
+        /// </summary>
+        string NetworkCarrier { get; }
     }
 }
