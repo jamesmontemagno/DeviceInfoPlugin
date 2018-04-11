@@ -1,20 +1,97 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.0</TargetFramework>
+    <TargetFrameworks>netstandard1.0;netstandard2.0;MonoAndroid71;Xamarin.iOS10;uap10.0.15063;Xamarin.TVOS10;Xamarin.WatchOS10;Xamarin.Mac20;Tizen40</TargetFrameworks>
     <AssemblyName>Plugin.DeviceInfo</AssemblyName>
     <RootNamespace>Plugin.DeviceInfo</RootNamespace>
+    <Product>$(AssemblyName) ($(TargetFramework))</Product>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <AssemblyFileVersion>1.0.0.0</AssemblyFileVersion>
     <Version>1.0.0.0</Version>
-  </PropertyGroup>
+    <Authors>James Montemagno</Authors>
+    <PackageId>Xam.Plugin.DeviceInfo</PackageId>
+    <PackOnBuild>true</PackOnBuild>
+    <PackageIconUrl>http://www.refractored.com/images/device_info_icon.png</PackageIconUrl>
+    <PackageLicenseUrl>https://github.com/jamesmontemagno/DeviceInfoPlugin/blob/master/LICENSE</PackageLicenseUrl>
+    <Owners>JamesMontemagno</Owners>
+    <PackageProjectUrl>https://github.com/jamesmontemagno/DeviceInfoPlugin</PackageProjectUrl>
+    <Summary>Get device information such as Model, OS, and other properties.</Summary>
+    <PackageTags>xamarin, pcl, xam.pcl, settings, windows phone, winphone, wp8, winrt, android, xamarin.forms, ios</PackageTags>
+    <Title>Device Information Plugin for Xamarin and Windows</Title>
+    <Description>
+      Receive information about the device that you are using. Properties such as Model, Operatin System, Version, Id, and even the ability to generate a unique Id for your application based off of these properties.
+    </Description>
+    <Copyright>Copyright 2018</Copyright>
+    <RepositoryUrl>https://github.com/jamesmontemagno/DeviceInfoPlugin</RepositoryUrl>
+    <PackageReleaseNotes>See: https://github.com/jamesmontemagno/DeviceInfoPlugin </PackageReleaseNotes>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\netstandard1.0\Plugin.DeviceInfo.xml</DocumentationFile>
-  </PropertyGroup>
+    <NeutralLanguage>en</NeutralLanguage>
+    <LangVersion>default</LangVersion>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
 
+    <DefineConstants>$(DefineConstants);</DefineConstants>
+
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)'=='Debug' ">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)'=='Release' ">
+    <DebugType>pdbonly</DebugType>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DeviceInfo.Plugin.Abstractions\DeviceInfo.Plugin.Abstractions.csproj" />
+    <None Include="..\..\nuget\readme.txt" Pack="true" />
+    <PackageReference Include="MSBuild.Sdk.Extras" Version="1.2.0" PrivateAssets="All" />
+    <Compile Include="**\*.shared.cs" />
   </ItemGroup>
 
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard')) ">
+  </ItemGroup>
+
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('uap10.0')) ">
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="5.2.3" />
+    <SDKReference Include="WindowsDesktop, Version=10.0.15063.0">
+      <Name>Windows Desktop Extensions for the UWP</Name>
+    </SDKReference>
+    <SDKReference Include="WindowsMobile, Version=10.0.15063.0">
+      <Name>Windows Mobile Extensions for the UWP</Name>
+    </SDKReference>
+    <Compile Include="**\*.uwp.cs" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('MonoAndroid')) ">
+    <Compile Include="**\*.android.cs" />
+    <PackageReference Include="Plugin.CurrentActivity" Version="2.0.0.6-beta" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.iOS')) ">
+    <Compile Include="**\*.apple.cs" />
+  </ItemGroup>
+
+
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.TVOS')) ">
+    <Compile Include="**\*.apple.cs" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.WatchOS')) ">
+    <Compile Include="**\*.apple.cs" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.Mac')) ">
+    <Compile Include="**\*.apple.cs" />
+  </ItemGroup>
+
+
+
+
+
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('Tizen')) ">
+    <Compile Include="**\*.tizen.cs" />
+    <PackageReference Include="Tizen.NET" Version="4.0.0" />
+  </ItemGroup>
+
+
+
+  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
 </Project>

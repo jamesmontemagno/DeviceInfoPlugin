@@ -33,7 +33,7 @@ namespace Plugin.DeviceInfo
 
 		static IDeviceInfo CreateDeviceInfo()
 		{
-#if NETSTANDARD1_0
+#if NETSTANDARD1_0 || NETSTANDARD2_0
 			return null;
 #else
 			return new DeviceInfoImplementation();
