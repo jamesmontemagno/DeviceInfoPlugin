@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.0;netstandard2.0;MonoAndroid71;Xamarin.iOS10;uap10.0.15063;Xamarin.TVOS10;Xamarin.WatchOS10;Xamarin.Mac20;Tizen40</TargetFrameworks>
+    <TargetFrameworks>netstandard1.0;netstandard2.0;net45;MonoAndroid71;Xamarin.iOS10;uap10.0.15063;Xamarin.TVOS10;Xamarin.WatchOS10;Xamarin.Mac20;Tizen40</TargetFrameworks>
     <AssemblyName>Plugin.DeviceInfo</AssemblyName>
     <RootNamespace>Plugin.DeviceInfo</RootNamespace>
     <Product>$(AssemblyName) ($(TargetFramework))</Product>
@@ -58,6 +58,11 @@
       <Name>Windows Mobile Extensions for the UWP</Name>
     </SDKReference>
     <Compile Include="**\*.uwp.cs" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('net4')) ">
+    <Compile Include="**\*.desktop.cs" />
+    <Reference Include="mscorlib.dll" />
   </ItemGroup>
 
   <ItemGroup Condition=" $(TargetFramework.StartsWith('MonoAndroid')) ">
