@@ -42,7 +42,7 @@
   </PropertyGroup>
   <ItemGroup>
      <None Include="..\..\nuget\readme.txt" PackagePath="readme.txt" Pack="true" />
-    <PackageReference Include="MSBuild.Sdk.Extras" Version="1.2.0" PrivateAssets="All" />
+    <PackageReference Include="MSBuild.Sdk.Extras" Version="1.4.0" PrivateAssets="All" />
     <Compile Include="**\*.shared.cs" />
   </ItemGroup>
 
@@ -67,7 +67,7 @@
 
   <ItemGroup Condition=" $(TargetFramework.StartsWith('MonoAndroid')) ">
     <Compile Include="**\*.android.cs" />
-    <PackageReference Include="Plugin.CurrentActivity" Version="2.0.1.4" />
+    <PackageReference Include="Plugin.CurrentActivity" Version="2.1.0.1" />
   </ItemGroup>
 
   <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.iOS')) ">
