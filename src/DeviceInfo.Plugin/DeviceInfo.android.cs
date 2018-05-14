@@ -34,6 +34,7 @@ namespace Plugin.DeviceInfo
     /// <summary>
     /// Implementation for Feature
     /// </summary>
+	[Preserve(AllMembers = true)]
     public class DeviceInfoImplementation : IDeviceInfo
     {
 
