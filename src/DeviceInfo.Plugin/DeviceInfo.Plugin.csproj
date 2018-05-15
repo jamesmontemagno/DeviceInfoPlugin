@@ -67,7 +67,7 @@
 
   <ItemGroup Condition=" $(TargetFramework.StartsWith('MonoAndroid')) ">
     <Compile Include="**\*.android.cs" />
-    <PackageReference Include="Plugin.CurrentActivity" Version="2.1.0.1" />
+    <PackageReference Include="Plugin.CurrentActivity" Version="2.1.0.2" />
   </ItemGroup>
 
   <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.iOS')) ">
