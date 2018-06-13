@@ -137,9 +137,16 @@ namespace Plugin.DeviceInfo
                     case "Windows.Mobile":
                         return Abstractions.Platform.WindowsPhone;
                     case "Windows.Desktop":
-                        return UIViewSettings.GetForCurrentView().UserInteractionMode == UserInteractionMode.Mouse
-                            ? Abstractions.Platform.Windows
-                            : Abstractions.Platform.WindowsTablet;
+	                    try
+	                    {
+		                    return UIViewSettings.GetForCurrentView().UserInteractionMode == UserInteractionMode.Mouse
+			                    ? Abstractions.Platform.Windows
+			                    : Abstractions.Platform.WindowsTablet;
+						}
+	                    catch
+	                    {
+		                    return Abstractions.Platform.Windows;
+				        }
                     case "Windows.IoT":
                         return Abstractions.Platform.IoT;
                     case "Windows.Xbox":
@@ -212,6 +219,6 @@ namespace Plugin.DeviceInfo
 		/// 
 		/// Source: http://igrali.com/2014/07/17/get-device-information-windows-phone-8-1-winrt/
         /// </summary>
-		public bool IsDevice => deviceInfo.SystemProductName == "Virtual";
+		public bool IsDevice => deviceInfo.SystemProductName != "Virtual";
     }
 }
