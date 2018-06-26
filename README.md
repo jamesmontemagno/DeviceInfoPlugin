@@ -42,7 +42,10 @@ Used to generate a unique Id for your app.
 string GenerateAppId(bool usingPhoneId = false, string prefix = null, string suffix = null);
 ```
 
+
 **Id**
+This should not be used as a stable ID as each vendor on Android may or may not set it to a different value and on iOS it is changed when applications are uninstalled.
+
 ```csharp
 /// <summary>
 /// This is the device specific Id (remember the correct permissions in your app to use this)
