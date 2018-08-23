@@ -79,27 +79,14 @@ namespace Plugin.DeviceInfo
 			}
 		}
 
-		public Version VersionNumber
-		{
-			get
-			{
-				try
-				{
-					return new Version(Version);
-				}
-				catch
-				{
-					return new Version();
-				}
-			}
-		}
+		public Version VersionNumber => Utils.ParseVersion(Version);
 
 
-		/// <summary>
-		/// Returns the current build of the app, as defined in the PList, e.g. "4300".
-		/// </summary>
-		/// <value>The current build.</value>
-		public string AppBuild => string.Empty;
+        /// <summary>
+        /// Returns the current build of the app, as defined in the PList, e.g. "4300".
+        /// </summary>
+        /// <value>The current build.</value>
+        public string AppBuild => string.Empty;
 
 		/// <summary>
 		/// Returns the current version of the app, as defined in the PList, e.g. "4.3".

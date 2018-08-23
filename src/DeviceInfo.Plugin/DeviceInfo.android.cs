@@ -128,23 +128,10 @@ namespace Plugin.DeviceInfo
         public string Version => Build.VERSION.Release; 
 
         /// <inheritdoc/>
-        public Platform Platform => Platform.Android; 
+        public Platform Platform => Platform.Android;
 
-        /// <inheritdoc/>
-        public Version VersionNumber
-        {
-            get
-            {
-                try
-                {
-                    return new Version(Version);
-                }
-                catch
-                {
-                    return new Version();
-                }
-            }
-        }
+		/// <inheritdoc/>
+		public Version VersionNumber => Utils.ParseVersion(Version);
 
 		/// <summary>
 		/// Returns the current version of the app, as defined in the metadata, e.g. "4.3".

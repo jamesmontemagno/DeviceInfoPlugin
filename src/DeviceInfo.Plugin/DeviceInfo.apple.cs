@@ -213,20 +213,7 @@ namespace Plugin.DeviceInfo
 
 
 		/// <inheritdoc/>
-		public Version VersionNumber
-		{
-			get
-			{
-				try
-				{
-					return new Version(Version);
-				}
-				catch
-				{
-					return new Version();
-				}
-			}
-		}
+		public Version VersionNumber => Utils.ParseVersion(Version);
 
 		/// <summary>
 		/// Returns the current version of the app, as defined in the PList, e.g. "4.3".
