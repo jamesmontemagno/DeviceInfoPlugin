@@ -17,18 +17,15 @@ namespace Plugin.DeviceInfo
 		/// <summary>
 		/// Get the name of the device
 		/// </summary>
-		public string Manufacturer => deviceInfo.SystemManufacturer;
+		public string Manufacturer => DeviceInfo.SystemManufacturer;
 
 		/// <summary>
 		/// Get the name of the device
 		/// </summary>
-		public string DeviceName => deviceInfo.FriendlyName;
+		public string DeviceName => DeviceInfo.FriendlyName;
 
 		EasClientDeviceInformation deviceInfo;
-        public DeviceInfoImplementation()
-        {
-            deviceInfo = new EasClientDeviceInformation();
-        }
+		EasClientDeviceInformation DeviceInfo => deviceInfo ?? (deviceInfo = new EasClientDeviceInformation());
         /// <inheritdoc/>
         public string GenerateAppId(bool usingPhoneId = false, string prefix = null, string suffix = null)
         {
@@ -102,7 +99,7 @@ namespace Plugin.DeviceInfo
             }
         }
 		/// <inheritdoc/>
-		public string Model => deviceInfo.SystemProductName;
+		public string Model => DeviceInfo.SystemProductName;
 
 		/// <inheritdoc/>
 		public string Version
@@ -139,7 +136,12 @@ namespace Plugin.DeviceInfo
                     case "Windows.Desktop":
 	                    try
 	                    {
-		                    return UIViewSettings.GetForCurrentView().UserInteractionMode == UserInteractionMode.Mouse
+							var currentView = UIViewSettings.GetForCurrentView();
+
+							if (currentView == null)
+								return Abstractions.Platform.Windows;
+
+		                    return currentView.UserInteractionMode == UserInteractionMode.Mouse
 			                    ? Abstractions.Platform.Windows
 			                    : Abstractions.Platform.WindowsTablet;
 						}
@@ -206,6 +208,6 @@ namespace Plugin.DeviceInfo
 		/// 
 		/// Source: http://igrali.com/2014/07/17/get-device-information-windows-phone-8-1-winrt/
         /// </summary>
-		public bool IsDevice => deviceInfo.SystemProductName != "Virtual";
+		public bool IsDevice => DeviceInfo.SystemProductName != "Virtual";
     }
 }
