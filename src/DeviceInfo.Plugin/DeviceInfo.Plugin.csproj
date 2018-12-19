@@ -99,6 +99,5 @@
 
   <ItemGroup Condition=" $(TargetFramework.StartsWith('Tizen')) ">
     <Compile Include="**\*.tizen.cs" />
-    <PackageReference Include="Tizen.NET" Version="4.0.0" />
   </ItemGroup>
 </Project>
