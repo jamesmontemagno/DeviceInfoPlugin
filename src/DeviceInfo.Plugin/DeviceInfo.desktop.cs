@@ -25,7 +25,7 @@ namespace Plugin.DeviceInfo
 				nic.NetworkInterfaceType == NetworkInterfaceType.Ethernet ||
 				nic.NetworkInterfaceType == NetworkInterfaceType.Wireless80211)
 			.Select(nic => nic.GetPhysicalAddress().ToString())
-			.First();
+			.FirstOrDefault();
 
 		public string Model { get; } = Environment.OSVersion.Platform.ToString();
 
