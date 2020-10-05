@@ -6,7 +6,7 @@ Simple way of getting common device information in Xamarin.iOS, Xamarin.Android,
 * Available on NuGet: http://www.nuget.org/packages/Xam.Plugin.DeviceInfo [![NuGet](https://img.shields.io/nuget/v/Xam.Plugin.DeviceInfo.svg?label=NuGet)](https://www.nuget.org/packages/Xam.Plugin.DeviceInfo/)
 * Install into your PCL/netstandard project and Client projects.
 
-Build status: ![Build status](https://jamesmontemagno.visualstudio.com/_apis/public/build/definitions/6b79a378-ddd6-4e31-98ac-a12fcd68644c/20/badge)
+Build status: ![Build status](https://jamesmontemagno.visualstudio.com/_apis/public/build/definitions/6b79a378-ddd6-4e31-98ac-a12fcd68644c/20/badge?WT.mc_id=deviceinfoplugin-github-jamont)
 
 ### The Future: [Xamarin.Essentials](https://docs.microsoft.com/xamarin/essentials/index?WT.mc_id=docs-github-jamont)
 
