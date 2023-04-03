@@ -8,7 +8,7 @@ Simple way of getting common device information in Xamarin.iOS, Xamarin.Android,
 
 Build status: ![Build status](https://jamesmontemagno.visualstudio.com/_apis/public/build/definitions/6b79a378-ddd6-4e31-98ac-a12fcd68644c/20/badge)
 
-### Migrate to: [Xamarin.Essentials](https://docs.microsoft.com/xamarin/essentials/index?WT.mc_id=friends-0000-jamont) or [.NET MAUI](https://learn.microsoft.com/dotnet/maui/platform-integration/appmodel/permissions?WT.mc_id=friends-0000-jamont)
+### Migrate to: [Xamarin.Essentials](https://docs.microsoft.com/xamarin/essentials/index?WT.mc_id=friends-0000-jamont) or [.NET MAUI](https://learn.microsoft.com/dotnet/maui/platform-integration/?WT.mc_id=friends-0000-jamont)
 
 I have been working on Plugins for Xamarin for a long time now. Through the years I have always wanted to create a single, optimized, and official package from the Xamarin team at Microsoft that could easily be consumed by any application. The time is now with [Xamarin.Essentials](https://docs.microsoft.com/xamarin/essentials/index?WT.mc_id=friends-0000-jamont), which offers over 50 cross-platform native APIs in a single optimized package. I worked on this new library with an amazing team of developers and I highly highly highly recommend you check it out. 
 
